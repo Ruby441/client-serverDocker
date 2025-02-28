@@ -1,0 +1,18 @@
+services:
+  server:
+    build: ./server
+    ports:
+      - "5000:5000" # mappo la porta del mio pc e quella della macchina docker cit.Susolein
+    networks:
+      - socket-network
+
+  client:
+    build: ./client
+    depends_on:
+      - server
+    networks:
+      - socket-network
+
+networks:
+  socket-network:
+    driver: bridge
